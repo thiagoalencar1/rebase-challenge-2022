@@ -16,21 +16,19 @@ $ open http://localhost:3000/tests
 
 ## Requisito funcional
 
-É requisito funcional que a app **não seja em Rails**, devendo seguir o padrão **Sinatra** que tem neste projeto, ou então se preferir, pode utilizar outro web framework que **não** seja Rails, por ex. grape, padrino, rack, etc ou até mesmo um HTTP/TCP server "na mão".
+É requisito funcional que a app **não seja em Rails**, devendo seguir o padrão **Sinatra** que há neste projeto, ou então se preferir, pode utilizar outro web framework que **não** seja Rails, por ex. grape, padrino, rack, etc ou até mesmo um HTTP/TCP server "na mão".
 
 ## Desafios
 
-Abaixo vamos listar os 3 principais desafios deste projeto, seguidos de um desafio bônus. Mas não se preocupe se nesta fase parecer muita coisa, pois vamos abordar os temas e dicas de cada desafios em
-diferentes sessões.
+Abaixo vamos listar os 3 principais desafios deste projeto, seguidos de um desafio bônus. Mas não se preocupe se nesta fase parecer muita coisa, pois vamos abordar os temas e dicas de cada desafio com muita calma e em diferentes sessões.
 
 ## Desafio 1: Importar os dados do CSV para um database SQL
 
-Esta API tem apenas um endpoint `/tests` que lê os dados de um arquivo CSV e renderiza no formato JSON. Você pode _modificar_ este endpoint para que, ao invés de ler do CSV, faça a leitura **diretamente de
-uma base de dados SQL**.
+A primeira versão original da API tem apenas um endpoint `/tests`, que lê os dados de um arquivo CSV e renderiza no formato JSON. Você pode _modificar_ este endpoint para que, ao invés de ler do CSV, faça a leitura **diretamente de uma base de dados SQL**.
 
 ### Script para importar os dados
 
-Este desafio de "importar" os dados do CSV para um **database SQL** (por ex. PostgreSQL), pode ser feito com um script Ruby simples ou **rake** task, como preferir.
+Este passo de "importar" os dados do CSV para um **database SQL** (por ex. PostgreSQL), pode ser feito com um script Ruby simples ou **rake** task, como preferir.
 
 Idealmente deveríamos ser capazes de rodar o script:
 ```bash
@@ -52,9 +50,9 @@ O resultado atual que o endpoint traz ao fazer a leitura do CSV, deve ser o mesm
 
 ## Desafio 2: Criar endpoint para importar os dados do CSV de forma assíncrona
 
-Com o desafio 1 completo, fazemos o import através de um script. Mas este script tem que ser executado por alguém developer ou admin do sistema.
+Com o desafio 1 completo, neste momento fazemos o import através de um script. Mas este script tem que ser executado por alguém developer ou admin do sistema.
 
-Idealmente, qualquer usuário da API poderia querer chamar um endpoint para atualizar os dados. Assim, o endpoint deveria aceitar um arquivo CSV dinâmico e importar os dados para o PostgreSQL.
+Para melhorar isto, idealmente qualquer usuário da API poderia chamar um endpoint para atualizar os dados. Assim, o endpoint deveria aceitar um arquivo CSV dinâmico e importar os dados para o PostgreSQL.
 
 Exemplo:
 ```bash
@@ -184,9 +182,9 @@ Para quem tiver familiaridade e quiser fazer o deploy da app, fique à vontade.
 
 ## Sessões e Dicas
 
-Não temos uma data-alvo para o térmido dos 3 **desafios alvo**, mas seria interessante que pudessem ser concluídos ao término da segunda semana, que é quando terminam as sessões.
+Não temos uma data final para o término dos 3 **desafios alvo**, mas seria interessante que pudessem ser concluídos ao término da segunda semana, que é quando terminam as sessões.
 
-Você pode fazer todos os desafios antes do tempo caso prefira, mas apenas estabelecendo uma meta semanal, vamos abordar os temas e dicas dos desafios ao longo das seguintes sessões:
+Você pode fazer todos os desafios antes do tempo caso prefira, mas apenas estabelecendo uma meta semanal, vamos abordar os temas e dicas dos desafios ao longo das seguintes sessões online:
 
 * Sessão 1: Docker, SQL e Testes
 * Sessão 2: Background Job (Sidekiq), HTTP
@@ -198,8 +196,10 @@ Você pode fazer fork deste projeto e trabalhar a partir dele, ou então iniciar
 ### Valorizamos documentação
 Tente documentar o máximo possível sobre sua aplicação em arquivos `Markdown` (como este aqui por exemplo) ou então em páginas wiki.
 
-Por se tratar de uma API, é extramemente importante que sejamos capazes de ler a documentação, documentação, conseguirmos fazer HTTP requests e analisar as respostas, sem precisar perguntar como a
+Por se tratar de uma API, é extramemente importante que sejamos capazes de ler a documentação e conseguirmos fazer HTTP requests e analisar as respostas, tudo isso sem precisarmos perguntar como a
 aplicação deve se comportar.
+
+Uma boa documentação é a *base* para a comunicação e boa saúde de um projeto de software.
 
 ### Valorizamos testes
 Testes são uma parte crucial no desenvolvimento de software. Se teu projeto não tem testes, não há garantias automatizadas de que ele vai continuar funcionando ao longo do tempo, à medida que mais código é adicionado nele.
