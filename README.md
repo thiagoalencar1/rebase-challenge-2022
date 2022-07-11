@@ -1,11 +1,27 @@
 # Rebase Challenge 2022
 
-API para listagem de exames médicos.
+API em Ruby para listagem de exames médicos.
+
+## Tech Stack
+
+* Docker
+* Ruby
+
+## Running
 
 ```bash
 $ bash run
 $ open http://localhost:3000/tests
 ```
+
+## Requisito funcional
+
+É requisito funcional que a app **não seja em Rails**, devendo seguir o padrão **Sinatra** que tem neste projeto, ou então se preferir, pode utilizar outro web framework que **não** seja Rails, por ex. grape, padrino, rack, etc ou até mesmo um HTTP/TCP server "na mão".
+
+## Desafios
+
+Abaixo vamos listar os 3 principais desafios deste projeto, seguidos de um desafio bônus. Mas não se preocupe se nesta fase parecer muita coisa, pois vamos abordar os temas e dicas de cada desafios em
+diferentes sessões.
 
 ## Desafio 1: Importar os dados do CSV para um database SQL
 
@@ -14,7 +30,7 @@ uma base de dados SQL**.
 
 ### Script para importar os dados
 
-Este desafio de "importar" os dados do CSV para um **database SQL** (por ex. PostgreSQL), pode ser feita com um script Ruby simples ou **rake** task, como preferir.
+Este desafio de "importar" os dados do CSV para um **database SQL** (por ex. PostgreSQL), pode ser feito com um script Ruby simples ou **rake** task, como preferir.
 
 Idealmente deveríamos ser capazes de rodar o script:
 ```bash
@@ -26,18 +42,19 @@ E depois, ao consultar o SQL, os dados deveriam estar *populados*.
 * _Dica 2_: utilizar um container para a API e **outro container** para o PostgreSQL. Utilize **networking** do `Docker` para que os 2 containers possam conversar entre si
 * _Dica 3_: comandos SQL -> `DROP TABLE`, `INSERT INTO`
 
-### Modificar endpoint /tests
+### Modificar a implementação do endpoint atual
 
 O resultado atual que o endpoint traz ao fazer a leitura do CSV, deve ser o mesmo quando modificarmos para ler direto do database.
 
 * _Dica 1_: primeiramente, separar o código que busca os dados em uma classe Ruby separada, pois além de ser mais fácil para testar, facilita o refactoring para quando fizermos a leitura direto do database SQL
-* _Dica 2_: testar primeiro as queries SQL direto no database, `SELECT` etc. Depois utilizar um **driver** para o PostgreSQL para que a app Ruby saiba "conversar" com o database. Ferramentas: `pgAdmin4` para fazer queries no PostgreSQL, gem `pg` para utilizar na app Ruby.
+* _Dica 2_: testar primeiro as queries SQL direto no database, `SELECT` etc. Depois utilizar um **driver** para o PostgreSQL para que a app Ruby saiba "conversar" com o database.
+* _Dica 3_: utilizar a gem `pg` na app Ruby, ou então se preferir, utilizar a gem `ActiveRecord` standalone (fora do Rails) na app.
 
 ## Desafio 2: Criar endpoint para importar os dados do CSV de forma assíncrona
 
 Com o desafio 1 completo, fazemos o import através de um script. Mas este script tem que ser executado por alguém developer ou admin do sistema.
 
-Idealmente, qualquer usuário da API poderia querer chamar um endpoint para atualizar os dados. Assim, o ednpoint aceita um arquivo CSV dinâmico e importa os dados para o PostgreSQL.
+Idealmente, qualquer usuário da API poderia querer chamar um endpoint para atualizar os dados. Assim, o endpoint deveria aceitar um arquivo CSV dinâmico e importar os dados para o PostgreSQL.
 
 Exemplo:
 ```bash
@@ -171,8 +188,8 @@ Não temos uma data-alvo para o térmido dos 3 **desafios alvo**, mas seria inte
 
 Você pode fazer todos os desafios antes do tempo caso prefira, mas apenas estabelecendo uma meta semanal, vamos abordar os temas e dicas dos desafios ao longo das seguintes sessões:
 
-* Sessão 1: Docker e SQL
-* Sessão 2: Background Job (Sidekiq)
+* Sessão 1: Docker, SQL e Testes
+* Sessão 2: Background Job (Sidekiq), HTTP
 * Sessão 3: Deploy da app (sessão extra para o desafio bônus de deploy)
 
 ### Faça fork do projeto ou inicie outro repositório
