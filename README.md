@@ -158,3 +158,34 @@ Response:
 ```
 
 * _Dica_: consultar no database SQL com `SELECT` e depois, trabalhar em cima dos dados de resposta **antes** de renderizar o JSON
+
+## Desafio bônus: Deploy da app na nuvem
+
+Este desafio é um *bônus* apenas. Não se preocupe pois havendo tempo, vamos abordar este assunto mais para o final das sessões.
+
+Para quem tiver familiaridade e quiser fazer o deploy da app, fique à vontade.
+
+## Sessões e Dicas
+
+Não temos uma data-alvo para o térmido dos 3 **desafios alvo**, mas seria interessante que pudessem ser concluídos ao término da segunda semana, que é quando terminam as sessões.
+
+Você pode fazer todos os desafios antes do tempo caso prefira, mas apenas estabelecendo uma meta semanal, vamos abordar os temas e dicas dos desafios ao longo das seguintes sessões:
+
+* Sessão 1: Docker e SQL
+* Sessão 2: Background Job (Sidekiq)
+* Sessão 3: Deploy da app (sessão extra para o desafio bônus de deploy)
+
+### Faça fork do projeto ou inicie outro repositório
+Você pode fazer fork deste projeto e trabalhar a partir dele, ou então iniciar outro repositório vazio e trabalhar nos desafios a partir de lá. Pode utilizar qualquer host de preferência: Github, Gitlab, Bitbucket etc.
+
+### Valorizamos documentação
+Tente documentar o máximo possível sobre sua aplicação em arquivos `Markdown` (como este aqui por exemplo) ou então em páginas wiki.
+
+Por se tratar de uma API, é extramemente importante que sejamos capazes de ler a documentação, documentação, conseguirmos fazer HTTP requests e analisar as respostas, sem precisar perguntar como a
+aplicação deve se comportar.
+
+### Valorizamos testes
+Testes são uma parte crucial no desenvolvimento de software. Se teu projeto não tem testes, não há garantias automatizadas de que ele vai continuar funcionando ao longo do tempo, à medida que mais código é adicionado nele.
+
+### Dúvidas?
+Em caso de dúvidas sobre estes desafios ou qualquer conteúdo das sessões, fique à vontade para conversar no Slack do programa.
