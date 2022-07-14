@@ -3,7 +3,7 @@ require 'pg'
 conn = PG.connect(dbname: "postgres", host: '172.17.0.2', port: 5432, user: 'postgres', password: 'pass')
 
 conn.exec("
-  CREATE TABLE IF NOT EXISTS client (
+  CREATE TABLE IF NOT EXISTS exams_results (
     id SERIAL PRIMARY KEY,
     cpf varchar(20),
     name varchar(450),

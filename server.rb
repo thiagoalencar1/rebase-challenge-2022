@@ -1,6 +1,9 @@
 require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
+require_relative 'lib/db_prepare'
+
+
 
 get '/tests' do
   ### Example
