@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 5432:5432
+
+  app:
+    image: ruby
+    container_name: ruby
+    depends_on: ['db']
+    command: bash -c "gem install rack sinatra puma pg && ruby server.rb"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - rechallenge_gems:/usr/local/bundle
+
+volumes:
+  rechallenge_gems:
+    external: true

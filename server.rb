@@ -2,7 +2,7 @@ require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
 require_relative 'lib/db_prepare'
-require_relative  'lib/db_import'
+require_relative  'lib/data_import'
 
 
 

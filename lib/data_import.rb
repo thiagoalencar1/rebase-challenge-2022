@@ -7,7 +7,7 @@ table = CSV.read('data.csv', col_sep: ';', headers: true)
 
 table.each do |result|
   conn.exec_params("
-    INSERT into client (cpf, name, email, birthdate, address, city, state,
+    INSERT into exams_results (cpf, name, email, birthdate, address, city, state,
       crm, crm_state, doctor_name, doctor_email,
       token_exame_result, exame_date, exame_type_limit, exame_result)
 
