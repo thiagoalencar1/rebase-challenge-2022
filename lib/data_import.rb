@@ -1,7 +1,7 @@
 require 'csv'
 require 'pg'
 
-conn = PG.connect(dbname: "postgres", host: '172.22.0.2', port: 5432, user: 'postgres', password: 'pass')
+conn = PG.connect(dbname: "postgres", host: 'db', user: 'postgres', password: 'pass')
 
 table = CSV.read('data.csv', col_sep: ';', headers: true)
 
