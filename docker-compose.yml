@@ -5,18 +5,21 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass
+    network_mode: "host"
 
   app:
     image: ruby
     container_name: ruby
     depends_on: ['db']
     command: bash -c "gem install rack sinatra puma pg && ruby server.rb"
-    ports:
-      - 3000:3000
     working_dir: /app
     volumes:
       - ./:/app
       - rechallenge_gems:/usr/local/bundle
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    network_mode: "host"
+   
 
 volumes:
   rechallenge_gems:

@@ -1,6 +1,7 @@
 require 'pg'
 
-conn = PG.connect(dbname: "postgres", host: 'db', user: 'postgres', password: 'pass')
+conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
+conn.exec("DROP TABLE IF EXISTS exams_results")
 
 conn.exec("
   CREATE TABLE IF NOT EXISTS exams_results (
@@ -16,8 +17,9 @@ conn.exec("
     crm_state varchar(100),
     doctor_name varchar(100),
     doctor_email varchar(100),
-    token_exame_result varchar(100),
-    exame_date varchar(100),
-    exame_type_limit varchar(100),
-    exame_result varchar(100)
+    token_exam_result varchar(100),
+    exam_date varchar(100),
+    exam_type varchar(100),
+    exam_type_limit varchar(100),
+    exam_result varchar(100)
   );")

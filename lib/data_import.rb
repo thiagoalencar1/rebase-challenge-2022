@@ -1,15 +1,17 @@
 require 'csv'
 require 'pg'
+require_relative 'db_prepare'
 
-conn = PG.connect(dbname: "postgres", host: 'db', user: 'postgres', password: 'pass')
+conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
 
 table = CSV.read('data.csv', col_sep: ';', headers: true)
 
 table.each do |result|
   conn.exec_params("
-    INSERT into exams_results (cpf, name, email, birthdate, address, city, state,
+    INSERT into exams_results (
+      cpf, name, email, birthdate, address, city, state,
       crm, crm_state, doctor_name, doctor_email,
-      token_exame_result, exame_date, exame_type_limit, exame_result)
+      token_exam_result, exam_date, exam_type, exam_type_limit, exam_result)
 
     VALUES (
       '#{result['cpf']}',
@@ -19,9 +21,12 @@ table.each do |result|
       '#{result['endereço/rua paciente']}',
       '#{result['cidade paciente'].gsub('\'','')}',
       '#{result['estado patiente']}',
+
       '#{result['crm médico']}',
       '#{result['crm médico estado']}',
+      '#{result['nome médico']}',
       '#{result['email médico']}',
+
       '#{result['token resultado exame']}',
       '#{result['data exame']}',
       '#{result['tipo exame']}',
