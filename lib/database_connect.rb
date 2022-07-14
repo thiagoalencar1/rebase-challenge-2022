@@ -1,6 +1,6 @@
 require 'pg'
 class DatabaseConnect
-  DEFAULT_DATABASE = PG.connect(dbname: "postgres", host: 'db', user: 'postgres', password: 'pass')
+  DEFAULT_DATABASE = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
 
   def connect(database = DEFAULT_DATABASE)
     @connection = database

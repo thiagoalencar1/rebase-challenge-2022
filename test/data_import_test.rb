@@ -5,7 +5,7 @@ require 'csv'
 class Import < Test::Unit::TestCase
 
   def test_import_csv_data
-    conn = PG.connect(dbname: "postgres", host: 'db', user: 'postgres', password: 'pass')
+    conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
     conn.exec("
       CREATE TABLE IF NOT EXISTS exams_results_tests (
         id SERIAL PRIMARY KEY,
