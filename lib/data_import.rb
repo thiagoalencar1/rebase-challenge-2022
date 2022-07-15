@@ -1,13 +1,10 @@
 require 'csv'
-require 'pg'
-require_relative 'db_prepare'
-
-conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
+require_relative './db_prepare'
 
 table = CSV.read('data.csv', col_sep: ';', headers: true)
 
 table.each do |result|
-  conn.exec_params("
+  DATABASE.exec_params("
     INSERT into exams_results (
       cpf, name, email, birthdate, address, city, state,
       crm, crm_state, doctor_name, doctor_email,

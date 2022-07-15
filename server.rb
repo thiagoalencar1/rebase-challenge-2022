@@ -4,8 +4,7 @@ require 'csv'
 require_relative 'lib/data_import'
 
 get '/tests' do
-  conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
-  exams = conn.exec("SELECT * FROM exams_results")
+  exams = DATABASE.exec("SELECT * FROM exams_results")
   
   column_names = exams.fields
   

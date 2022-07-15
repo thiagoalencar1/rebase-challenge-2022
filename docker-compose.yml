@@ -11,7 +11,9 @@ services:
     image: ruby
     container_name: ruby
     depends_on: ['db']
-    command: bash -c "gem install rack sinatra puma pg && ruby server.rb"
+    #command: bash -c "gem install rack sinatra puma pg && ruby server.rb"
+    stdin_open: true
+    tty: true
     working_dir: /app
     volumes:
       - ./:/app
@@ -20,7 +22,6 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
     network_mode: "host"
    
-
 volumes:
   rechallenge_gems:
     external: true

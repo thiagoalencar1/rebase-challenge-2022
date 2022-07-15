@@ -1,9 +1,8 @@
-require 'pg'
+require_relative './db_connect'
 
-conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
-conn.exec("DROP TABLE IF EXISTS exams_results")
+DATABASE.exec("DROP TABLE IF EXISTS exams_results")
 
-conn.exec("
+DATABASE.exec("
   CREATE TABLE IF NOT EXISTS exams_results (
     id SERIAL PRIMARY KEY,
     cpf varchar(20),
