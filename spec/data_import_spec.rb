@@ -1,10 +1,9 @@
-require 'test/unit'
+require 'spec_helper'
 require 'pg'
 require 'csv'
 
-class Import < Test::Unit::TestCase
-
-  def test_import_csv_data
+describe 'Data Import' do
+  it 'Sould import data correctly in database' do
     conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
     conn.exec("
       CREATE TABLE IF NOT EXISTS exams_results_tests (
@@ -26,7 +25,7 @@ class Import < Test::Unit::TestCase
         exame_result varchar(100)
       );")
 
-    table = CSV.read('test/test_data.csv', col_sep: ';', headers: true)
+    table = CSV.read('spec/test_data.csv', col_sep: ';', headers: true)
 
     table.each do |result|
       conn.exec_params("
@@ -45,7 +44,8 @@ class Import < Test::Unit::TestCase
       ")
     end
 
-    assert_equal 7, conn.exec("SELECT * FROM exams_results_tests").count, 'Entries imported'
+    expect(conn.exec("SELECT * FROM exams_results_tests").count).to eq(7)
+   
     conn.exec_params("DROP TABLE exams_results_tests")
   end
 end

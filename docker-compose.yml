@@ -22,8 +22,8 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
-      - rechallenge_gems:/usr/local/bundle
+      - rebase_gems:/usr/local/bundle
     network_mode: "host"
    
 volumes:
-  rechallenge_gems:
+  rebase_gems:
