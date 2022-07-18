@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
-require_relative 'lib/data_import'
+require_relative './lib/data_import'
 
 get '/tests' do
   exams = DATABASE.exec("SELECT * FROM exams_results")
@@ -14,7 +14,6 @@ get '/tests' do
       acc[column] = cell[1]
     end
   end.to_json
-
 end
 
 Rack::Handler::Puma.run(
