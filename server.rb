@@ -6,7 +6,7 @@ require_relative './lib/data_import'
 require_relative './workers/import_worker'
 
 Sidekiq.configure_client do |config|
-  config.redis = { url: 'redis://redis:6379/'}
+  config.redis = { url: 'redis://redis:6379/0'}
 end
 
 table = CSV.read('data.csv', col_sep: ';', headers: true)

@@ -14,7 +14,7 @@ services:
     container_name: redis
     environment:
       REDIS_URL: redis://redis:6379/
-    depends_on: ['database']
+    depends_on:  ['database']
   
   sidekiq:
     container_name: sidekiq
@@ -30,6 +30,10 @@ services:
     stdin_open: true
     tty: true
 
+  sidekiq_web:
+    container_name: sidekiq_web
+    image: joshjhall/sidekiq-monitor
+    
   app:
     image: ruby
     container_name: ruby
