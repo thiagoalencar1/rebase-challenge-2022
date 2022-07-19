@@ -2,6 +2,7 @@ require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
 require_relative './lib/data_import'
+require_relative './workers/import_worker'
 
 table = CSV.read('data.csv', col_sep: ';', headers: true)
 data_import(table)
@@ -32,31 +33,9 @@ get '/tests/:token' do
   end.to_json
 end
 
-get '/files' do
-  list = Dir.glob("./*.*").map{|f| f.split('/').last}
-  # render list here
-end
-
-get '/import' do
-  "
-  <form action='http://localhost:3000/results' method='POST' enctype='multipart/form-data'>
-    <input type='file' name='file'>
-    <input type='submit' value='Carregar Exames'>
-  </form>
-  "
-end
-
 post '/import' do
-  begin
-    path = "import/#{File.basename(request.body.to_path)}"
-    ImportJob.perform_async(path)
-    201
-  rescue
-    500
-  end
-  data = request.body.read
+  ImportJob.perform_async(request.body.read)
 end
-
 
 Rack::Handler::Puma.run(
   Sinatra::Application,

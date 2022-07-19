@@ -1,17 +1,29 @@
 services:
   db:
     image: postgres
-    container_name: postgres
+    container_name: database
     hostname: database
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass
-    network_mode: "host"
 
   redis:
     image: redis
     container_name: redis
-    network_mode: "host"
+  
+  # sidekiq:
+  #   container_name: sidekiq
+  #   image: ruby
+  #   working_dir: /app
+  #   volumes:
+  #     - .:/app
+  #     - rebase_gems:/usr/local/bundle
+  #   environment:
+  #     REDIS_URL: redis://redis:6379
+  #   depends_on: ['redis']
+  #   command: bash -c "bundle install && bundle exec sidekiq -r ./workers/import_worker.rb"
 
   app:
     image: ruby
@@ -19,11 +31,13 @@ services:
     depends_on: ['db']
     stdin_open: true
     tty: true
+    #command: bash -c 'bundle install && ruby server.rb'
+    ports:
+      - 3000:3000
     working_dir: /app
     volumes:
       - ./:/app
       - rebase_gems:/usr/local/bundle
-    network_mode: "host"
    
 volumes:
   rebase_gems:

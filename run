@@ -1,0 +1,3 @@
+docker run --rm --name database -e POSTGRES_PASSWORD=pass -p 5432:5432 postgres
+
+docker run --rm --network host --name sidekiq -it -w /app -v $(pwd):/app ruby bash
