@@ -1,8 +1,13 @@
 require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
+require 'sidekiq'
 require_relative './lib/data_import'
 require_relative './workers/import_worker'
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: 'redis://redis:6379/'}
+end
 
 table = CSV.read('data.csv', col_sep: ';', headers: true)
 data_import(table)
@@ -34,7 +39,7 @@ get '/tests/:token' do
 end
 
 post '/import' do
-  ImportJob.perform_async(request.body.read)
+  ImportWorker.perform_async(request.body.read)
 end
 
 Rack::Handler::Puma.run(

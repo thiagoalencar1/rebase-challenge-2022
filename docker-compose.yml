@@ -12,23 +12,28 @@ services:
   redis:
     image: redis
     container_name: redis
+    environment:
+      REDIS_URL: redis://redis:6379/
+    depends_on: ['database']
   
-  # sidekiq:
-  #   container_name: sidekiq
-  #   image: ruby
-  #   working_dir: /app
-  #   volumes:
-  #     - .:/app
-  #     - rebase_gems:/usr/local/bundle
-  #   environment:
-  #     REDIS_URL: redis://redis:6379
-  #   depends_on: ['redis']
-  #   command: bash -c "bundle install && bundle exec sidekiq -r ./workers/import_worker.rb"
+  sidekiq:
+    container_name: sidekiq
+    image: ruby
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - rebase_gems:/usr/local/bundle
+    environment:
+      REDIS_URL: redis://redis:6379
+    depends_on: ['redis', 'database', 'app']
+    #command: bash -c "bundle install && bundle exec sidekiq -r './workers/import_worker.rb'"
+    stdin_open: true
+    tty: true
 
   app:
     image: ruby
     container_name: ruby
-    depends_on: ['db']
+    depends_on: ['database']
     stdin_open: true
     tty: true
     #command: bash -c 'bundle install && ruby server.rb'

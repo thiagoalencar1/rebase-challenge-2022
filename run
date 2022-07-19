@@ -1,3 +1,5 @@
 docker run --rm --name database -e POSTGRES_PASSWORD=pass -p 5432:5432 postgres
 
-docker run --rm --network host --name sidekiq -it -w /app -v $(pwd):/app ruby bash
+docker run --rm --name sidekiq -it -w /app -v $(pwd):/app -v rebase-challenge-2022_rebase_gems -e REDIS_URL=redis://redis:6379 ruby bash
+
+docker run --rm --name ruby -it -w /app -v $(pwd):/app -v rebase-challenge-2022_rebase_gems:/usr/local/bundle ruby bash

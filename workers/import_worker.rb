@@ -1,6 +1,10 @@
 require 'sidekiq'
 require './lib/data_import'
 
+Sidekiq.configure_server do |config|
+  config.redis = { url: 'redis://redis:6379/'}
+end
+
 class ImportWorker
   include Sidekiq::Worker
 

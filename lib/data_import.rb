@@ -1,8 +1,6 @@
 require 'csv'
 require_relative './db_prepare'
 
-table = CSV.read('data.csv', col_sep: ';', headers: true)
-
 def data_import(table)
   table.each do |row|
     DATABASE.exec_params("
