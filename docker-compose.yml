@@ -15,38 +15,32 @@ services:
     environment:
       REDIS_URL: redis://redis:6379/
     depends_on:  ['database']
-  
-  sidekiq:
-    container_name: sidekiq
-    image: ruby
-    working_dir: /app
-    volumes:
-      - ./:/app
-      - rebase_gems:/usr/local/bundle
-    environment:
-      REDIS_URL: redis://redis:6379
-    depends_on: ['redis', 'database', 'app']
-    #command: bash -c "bundle install && bundle exec sidekiq -r './workers/import_worker.rb'"
-    stdin_open: true
-    tty: true
-
-  sidekiq_web:
-    container_name: sidekiq_web
-    image: joshjhall/sidekiq-monitor
     
   app:
     image: ruby
     container_name: ruby
     depends_on: ['database']
-    stdin_open: true
-    tty: true
-    #command: bash -c 'bundle install && ruby server.rb'
+    command: bash -c 'bundle install && ruby server.rb'
     ports:
       - 3000:3000
     working_dir: /app
     volumes:
       - ./:/app
       - rebase_gems:/usr/local/bundle
-   
+    restart: on-failure 
+
+  sidekiq:
+    image: ruby
+    container_name: sidekiq
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - rebase_gems:/usr/local/bundle
+    environment:
+      REDIS_URL: redis://redis:6379
+    depends_on: ['app', 'redis', 'database']
+    command: bash -c "bundle install && sidekiq -r './workers/import_worker.rb'"
+    restart: on-failure 
+      
 volumes:
   rebase_gems:

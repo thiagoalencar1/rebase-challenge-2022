@@ -2,17 +2,34 @@
 
 ## Preparando o ambiente
 
-Com o Docker devidamente instalado, inicie com o comando:
+With Docker properly installed in your machine type:
 
 ```
 docker-compose up
 ```
 
-- Você precisará ter as portas 5432, 3000 e ... disponíveis na sua máquina
--
+When you see the follow text in your terminal the application is ready to use. 
 
-## Acesso aos dados
+```
+ruby      | * Puma version: 5.6.4 (ruby 3.1.2-p20) ("Birdie's Version")
+ruby      | *  Min threads: 0
+ruby      | *  Max threads: 5
+ruby      | *  Environment: development
+ruby      | *          PID: 1
+ruby      | * Listening on http://0.0.0.0:3000
+ruby      | Use Ctrl-C to stop
+```
+The load time may vary acoording your conection and storage speed.
 
-Acesse a rota https://localhost:3000/tests
+
+## Endpoints
+
+http://localhost:3000/tests
+- To see all Clinical Exams
+
+http://localhost:3000/tests/token
+- To see details from one Clinical Exams result
+
+
 
 ##
