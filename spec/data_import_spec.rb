@@ -3,9 +3,10 @@ require 'pg'
 require 'csv'
 
 describe 'Data Import' do
-  it 'Sould import data correctly in database' do
-    conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
-    conn.exec("
+  after(:context) { DATABASE.exec("DROP TABLE exams_results_tests") }
+  
+  it 'Should import data correctly in database' do
+    DATABASE.exec("
       CREATE TABLE IF NOT EXISTS exams_results_tests (
         id SERIAL PRIMARY KEY,
         cpf varchar(20),
@@ -28,7 +29,7 @@ describe 'Data Import' do
     table = CSV.read('spec/test_data.csv', col_sep: ';', headers: true)
 
     table.each do |result|
-      conn.exec_params("
+      DATABASE.exec_params("
         INSERT into exams_results_tests (cpf, name, email, birthdate, address, city, state,
           crm, crm_state, doctor_name, doctor_email,
           token_exame_result, exame_date, exame_type_limit, exame_result)
@@ -44,8 +45,6 @@ describe 'Data Import' do
       ")
     end
 
-    expect(conn.exec("SELECT * FROM exams_results_tests").count).to eq(7)
-   
-    conn.exec_params("DROP TABLE exams_results_tests")
+    expect(DATABASE.exec("SELECT * FROM exams_results_tests").count).to eq(7)
   end
 end

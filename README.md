@@ -30,6 +30,9 @@ http://localhost:3000/tests
 http://localhost:3000/tests/token
 - To see details from one Clinical Exams result
 
+http://localhost:3000/import
+- To import new results
+
 
 
 ##

@@ -1,21 +1,17 @@
 require 'spec_helper'
+require 'pg'
+require_relative '../lib/db_connect'
 
 describe 'Data Base Prepare' do
+  after(:context) { DATABASE.exec("DROP TABLE test_table") }
+
   it 'Should connect to database successfully' do
-    conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
-
-    expect(conn.db).to eq('postgres') 
-
-    conn.close
+    expect(DATABASE.db).to eq('postgres')
   end
 
   it 'Should create table successfully' do
-    conn = PG.connect(dbname: 'postgres', host: '127.0.0.1', port: 5432,  user: 'postgres', password: 'pass')
-    conn.exec_params("CREATE TABLE IF NOT EXISTS test_table(some_column INTEGER)")
+    DATABASE.exec_params("CREATE TABLE IF NOT EXISTS test_table(some_column INTEGER)")
 
-    expect(conn.exec("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'").entries.last['table_name']).to eq('test_table')
-
-    conn.exec("DROP TABLE test_table")
-    conn.close
+    expect(DATABASE.exec("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'").entries.last['table_name']).to eq('test_table')
   end
 end

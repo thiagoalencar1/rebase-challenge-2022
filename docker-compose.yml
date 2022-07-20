@@ -21,6 +21,8 @@ services:
     container_name: ruby
     depends_on: ['database']
     command: bash -c 'bundle install && ruby server.rb'
+    tty: true
+    stdin_open: true
     ports:
       - 3000:3000
     working_dir: /app
@@ -39,8 +41,10 @@ services:
     environment:
       REDIS_URL: redis://redis:6379
     depends_on: ['app', 'redis', 'database']
+    tty: true
+    stdin_open: true
     command: bash -c "bundle install && sidekiq -r './workers/import_worker.rb'"
-    restart: on-failure 
+    restart: on-failure
       
 volumes:
   rebase_gems:
