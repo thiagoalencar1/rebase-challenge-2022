@@ -3,6 +3,8 @@ require_relative './db_connect'
 class ClinicalExams
   def self.all_exams(exams = DATABASE.exec("SELECT * FROM exams_results"))
 
+    return 'Não foram encontrados exames clínicos' if exams.count == 0
+
     column_names = exams.fields
 
     exams.map do |exam|
@@ -16,7 +18,7 @@ class ClinicalExams
   def self.show_exam(token)
     header = DATABASE.exec_params("SELECT token_exam_result, exam_date, cpf, name, email, exam_date FROM exams_results WHERE token_exam_result = '#{token}'").to_a
     doctor = DATABASE.exec_params("SELECT doctor_name, doctor_email, crm, crm_state FROM exams_results WHERE token_exam_result = '#{token}'").to_a
-    tests = DATABASE.exec_params("SELECT exam_type, exam_type_limit, exam_result FROM exams_results where token_exam_result = '#{token}'").to_a
+    tests = DATABASE.exec_params("SELECT DISTINCT exam_type, exam_type_limit, exam_result FROM exams_results where token_exam_result = '#{token}'").to_a
 
     details = header.first
     details = details.merge('doctor' => doctor.first)

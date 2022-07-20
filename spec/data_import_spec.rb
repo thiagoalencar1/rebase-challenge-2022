@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'pg'
 require 'csv'
+require './lib/db_connect'
 
-describe 'Data Import' do
+describe 'DataImport' do
   after(:context) { DATABASE.exec("DROP TABLE exams_results_tests") }
   
-  it 'Should import data correctly in database' do
+  it 'should import data correctly in database' do
     DATABASE.exec("
       CREATE TABLE IF NOT EXISTS exams_results_tests (
         id SERIAL PRIMARY KEY,
@@ -26,7 +26,7 @@ describe 'Data Import' do
         exame_result varchar(100)
       );")
 
-    table = CSV.read('spec/test_data.csv', col_sep: ';', headers: true)
+    table = CSV.read('spec/support/test_data.csv', col_sep: ';', headers: true)
 
     table.each do |result|
       DATABASE.exec_params("
