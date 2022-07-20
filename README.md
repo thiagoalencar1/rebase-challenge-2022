@@ -235,6 +235,11 @@ And you got the tests results.
 ## **POST /import** 
 - Import new results with CSV.
 - Example to upload using Imnsonia:
+<br />
+
+![image](https://user-images.githubusercontent.com/14118336/180081121-5a8aa1ff-b5c7-4176-aefa-c5b467bb60b4.png)
+
+<br />
 
 - CSV header format:
 
