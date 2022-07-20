@@ -3,6 +3,7 @@ require 'rack/handler/puma'
 require 'csv'
 require 'sidekiq'
 require_relative './lib/data_import'
+require_relative './lib/clinical_exams'
 require_relative './workers/import_worker'
 
 Sidekiq.configure_client do |config|
@@ -13,29 +14,11 @@ table = CSV.read('data.csv', col_sep: ';', headers: true)
 data_import(table)
 
 get '/tests' do
-  exams = DATABASE.exec("SELECT * FROM exams_results")
-  
-  column_names = exams.fields
-  
-  exams.map do |exam|
-    exam.each_with_object({}).with_index do |(cell, acc), idx|
-      column = column_names[idx]
-      acc[column] = cell[1]
-    end
-  end.to_json
+  ClinicalExams.all_exams
 end
 
 get '/tests/:token' do
-  exams = DATABASE.exec_params("SELECT * FROM exams_results WHERE token_exam_result = '#{params[:token]}'")
-
-  column_names = exams.fields
-
-  exams.map do |exam|
-    exam.each_with_object({}).with_index do |(cell, acc), idx|
-      column = column_names[idx]
-      acc[column] = cell[1]
-    end
-  end.to_json
+  ClinicalExams.show_exam(params["token"]).to_json
 end
 
 post '/import' do
