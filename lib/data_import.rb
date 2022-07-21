@@ -1,5 +1,5 @@
 require 'csv'
-require_relative './db_prepare'
+require_relative './db_connect'
 
 def data_import(table)
   table.each do |row|

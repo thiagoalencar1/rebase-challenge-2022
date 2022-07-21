@@ -8,6 +8,11 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
 
   redis:
     image: redis
@@ -19,8 +24,10 @@ services:
   app:
     image: ruby
     container_name: ruby
-    depends_on: ['database']
-    command: bash -c 'bundle install && ruby server.rb'
+    depends_on:
+      db:
+        condition: service_healthy
+    command: bash -c 'bundle install && ruby lib/db_prepare.rb && ruby server.rb'
     tty: true
     stdin_open: true
     ports:

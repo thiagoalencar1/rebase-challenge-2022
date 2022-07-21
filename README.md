@@ -99,9 +99,34 @@ And you got the tests results.
 	},
 	"tests": [
 		{
+			"exam_type": "ácido úrico",
+			"exam_type_limit": "15-61",
+			"exam_result": "2"
+		},
+		{
+			"exam_type": "eletrólitos",
+			"exam_type_limit": "2-68",
+			"exam_result": "85"
+		},
+		{
+			"exam_type": "glicemia",
+			"exam_type_limit": "25-83",
+			"exam_result": "98"
+		},
+		{
+			"exam_type": "hdl",
+			"exam_type_limit": "19-75",
+			"exam_result": "0"
+		},
+		{
 			"exam_type": "hemácias",
 			"exam_type_limit": "45-52",
 			"exam_result": "97"
+		},
+		{
+			"exam_type": "ldl",
+			"exam_type_limit": "45-54",
+			"exam_result": "80"
 		},
 		{
 			"exam_type": "leucócitos",
@@ -114,24 +139,9 @@ And you got the tests results.
 			"exam_result": "97"
 		},
 		{
-			"exam_type": "hdl",
-			"exam_type_limit": "19-75",
-			"exam_result": "0"
-		},
-		{
-			"exam_type": "ldl",
-			"exam_type_limit": "45-54",
-			"exam_result": "80"
-		},
-		{
-			"exam_type": "vldl",
-			"exam_type_limit": "48-72",
-			"exam_result": "82"
-		},
-		{
-			"exam_type": "glicemia",
-			"exam_type_limit": "25-83",
-			"exam_result": "98"
+			"exam_type": "t4-livre",
+			"exam_type_limit": "34-60",
+			"exam_result": "94"
 		},
 		{
 			"exam_type": "tgo",
@@ -144,89 +154,14 @@ And you got the tests results.
 			"exam_result": "9"
 		},
 		{
-			"exam_type": "eletrólitos",
-			"exam_type_limit": "2-68",
-			"exam_result": "85"
-		},
-		{
 			"exam_type": "tsh",
 			"exam_type_limit": "25-80",
 			"exam_result": "65"
-		},
-		{
-			"exam_type": "t4-livre",
-			"exam_type_limit": "34-60",
-			"exam_result": "94"
-		},
-		{
-			"exam_type": "ácido úrico",
-			"exam_type_limit": "15-61",
-			"exam_result": "2"
-		},
-		{
-			"exam_type": "hemácias",
-			"exam_type_limit": "45-52",
-			"exam_result": "97"
-		},
-		{
-			"exam_type": "leucócitos",
-			"exam_type_limit": "9-61",
-			"exam_result": "89"
-		},
-		{
-			"exam_type": "plaquetas",
-			"exam_type_limit": "11-93",
-			"exam_result": "97"
-		},
-		{
-			"exam_type": "hdl",
-			"exam_type_limit": "19-75",
-			"exam_result": "0"
-		},
-		{
-			"exam_type": "ldl",
-			"exam_type_limit": "45-54",
-			"exam_result": "80"
 		},
 		{
 			"exam_type": "vldl",
 			"exam_type_limit": "48-72",
 			"exam_result": "82"
-		},
-		{
-			"exam_type": "glicemia",
-			"exam_type_limit": "25-83",
-			"exam_result": "98"
-		},
-		{
-			"exam_type": "tgo",
-			"exam_type_limit": "50-84",
-			"exam_result": "87"
-		},
-		{
-			"exam_type": "tgp",
-			"exam_type_limit": "38-63",
-			"exam_result": "9"
-		},
-		{
-			"exam_type": "eletrólitos",
-			"exam_type_limit": "2-68",
-			"exam_result": "85"
-		},
-		{
-			"exam_type": "tsh",
-			"exam_type_limit": "25-80",
-			"exam_result": "65"
-		},
-		{
-			"exam_type": "t4-livre",
-			"exam_type_limit": "34-60",
-			"exam_result": "94"
-		},
-		{
-			"exam_type": "ácido úrico",
-			"exam_type_limit": "15-61",
-			"exam_result": "2"
 		}
 	]
 }
