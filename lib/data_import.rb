@@ -1,7 +1,9 @@
 require 'csv'
 require_relative './db_connect'
 
-def data_import(table)
+default_table = CSV.read('data.csv', col_sep: ';', headers: true)
+
+def data_import(table = default_table)
   table.each do |row|
     DATABASE.exec_params("
       INSERT into exams_results (
