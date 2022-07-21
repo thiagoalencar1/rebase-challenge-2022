@@ -1,9 +1,28 @@
 # Rebase Challenge 2022
 
+Ruby API ti handling with clinical examinations.
+
+## Tech Stack
+- Docker
+- Ruby
+- Sinatra
+- Rspec
+- Redis
+- Sidekiq
+
+
 ## Prepare Environment
 
-With Docker properly installed in your machine type:
-
+1. Make sure docker is properly installed on your machine
+2. Clone repository:
+```
+git clone https://github.com/thiagogondim/rebase-challenge-2022-.git
+```
+3. Enter into de app folder:
+```
+cd rebase-challenge-2022-
+```
+4. Finally, type:
 ```
 docker-compose up
 ```
@@ -22,13 +41,12 @@ ruby      | Use Ctrl-C to stop
 The load time may vary acoording your conection and storage speed.
 
 ## Running Tests
-- With your appication up and running, open another terminal and just type:
+With your appication up and running, open another terminal and just type:
 ```
 docker exec ruby rspec
 ```
 And you got the tests results.
 
----
 <br />
 
 # **Endpoints**
@@ -78,7 +96,8 @@ And you got the tests results.
 	}
 ]
 ```
----
+<br />
+
 ## **GET /tests/:token**
 - Show details from one Clinical Exam.
 - Replace token by your token.
@@ -166,7 +185,9 @@ And you got the tests results.
 	]
 }
 ```
----
+
+<br />
+
 ## **POST /import** 
 - Import new results with CSV.
 - Example to upload using Imnsonia:
@@ -180,6 +201,7 @@ And you got the tests results.
 
 | cpf | nome paciente | email paciente | data nascimento paciente | endereço/rua paciente | cidade paciente | estado patiente | crm médico | crm médico estado | nome médico | email médico | token resultado exame | data exame | tipo exame | limites tipo exame | resultado tipo exame |
 |:---:|:-------------:|:--------------:|:------------------------:|:---------------------:|:---------------:|:---------------:|:----------:|:-----------------:|:-----------:|:------------:|:---------------------:|:----------:|:----------:|:------------------:|:--------------------:|
+
 <br />
 
 ```
