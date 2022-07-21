@@ -52,6 +52,20 @@ services:
     stdin_open: true
     command: bash -c "bundle install && sidekiq -r './workers/import_worker.rb'"
     restart: on-failure
-      
+  
+  sideboard:
+    image: ruby
+    container_name: sideboard
+    working_dir: /app
+    depends_on: ['sidekiq']
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/app
+      - rebase_gems:/usr/local/bundle
+    ports:
+      - 3535:3535
+    command: bash -c 'bundle && bundle exec rackup -o 0.0.0.0 -p 3535'
+
 volumes:
   rebase_gems:

@@ -207,9 +207,6 @@ And you got the tests results.
 ```
 cpf;nome paciente;email paciente;data nascimento paciente;endereço/rua paciente;cidade paciente;estado patiente;crm médico;crm médico estado;nome médico;email médico;token resultado exame;data exame;tipo exame;limites tipo exame;resultado tipo exame
 ```
-
-
-
-
-
-
+## Sidekiq Monitor
+To access Sidekiq Panel access:
+- **localhost:3535**
