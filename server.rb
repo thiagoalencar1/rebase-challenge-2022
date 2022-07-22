@@ -15,6 +15,7 @@ class ClinicalExamsApi < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  set default_content_type: 'json'
   set :bind, '0.0.0.0'
   set :port, 3000
 
