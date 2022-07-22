@@ -1,9 +1,4 @@
 require 'spec_helper'
-require 'sidekiq/testing'
-require './lib/clinical_exams'
-require 'debug'
-Sidekiq::Worker.clear_all
-Sidekiq::Testing.inline!
 
 RSpec.describe 'POST /import' do
   let(:app) { ClinicalExamsApi.new }

@@ -3,11 +3,16 @@ require 'pg'
 require 'rack'
 require 'rack/test'
 require 'rake'
+require 'sidekiq/testing'
 require './lib/db_manager'
+require './lib/clinical_exams'
 require './server'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+
+  Sidekiq::Worker.clear_all
+  Sidekiq::Testing.inline!
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
