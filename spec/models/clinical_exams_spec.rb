@@ -1,10 +1,9 @@
 
 require 'spec_helper'
 require 'json'
-require './lib/db_manager'
 require './lib/clinical_exams'
 
-describe 'ClinicalExams' do
+RSpec.describe 'ClinicalExams' do
   before(:each) { DbManager.reset }
   after(:each) { DbManager.drop }
 
