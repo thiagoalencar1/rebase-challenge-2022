@@ -1,7 +1,7 @@
 require_relative './db_manager'
 
 class ClinicalExams
-  def self.all_exams(exams = DATABASE.exec("SELECT * FROM exams_results"))
+  def self.all_exams(exams = DbManager.find_all)
 
     return 'Não foram encontrados exames clínicos' if exams.count == 0
 

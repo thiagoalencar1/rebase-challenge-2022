@@ -1,6 +1,5 @@
 require 'spec_helper'
-require 'pg'
-require_relative '../lib/db_connect'
+require './lib/db_manager'
 
 describe 'Data Base Prepare' do
   after(:context) { DATABASE.exec("DROP TABLE test_table") }

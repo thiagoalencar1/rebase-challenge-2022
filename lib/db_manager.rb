@@ -40,4 +40,8 @@ class DbManager
       )
     end
   end
+
+  def self.find_all
+    DATABASE.exec("SELECT * FROM exams_results")
+  end
 end
