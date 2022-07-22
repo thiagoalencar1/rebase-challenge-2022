@@ -28,7 +28,14 @@ class ClinicalExamsApi < Sinatra::Base
   end
 
   post '/import' do
-    ImportWorker.perform_async(request.body.read)
+    data = request.body.read.force_encoding('utf-8')
+    if data.empty?
+      return 412, '{ Por favor escolha o arquivo a ser enviado. }'.to_json
+    else
+      ImportWorker.perform_async(data)
+      status 200; body '{ Os exames estão sendo processados  }'.to_json
+    end
+    
   end
 
   run! if app_file == $0

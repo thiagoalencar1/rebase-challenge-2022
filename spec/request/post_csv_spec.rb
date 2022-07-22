@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'sidekiq/testing'
 require './lib/clinical_exams'
+require 'debug'
 Sidekiq::Worker.clear_all
 Sidekiq::Testing.inline!
 
@@ -17,6 +18,15 @@ RSpec.describe 'POST /import' do
 
       expect(last_response.status).to eq 200
       expect(DbManager.find_all.first['cpf']).to eq '048.973.170-88'
+    end
+
+
+    it 'and there is no file sent' do
+      
+      post '/import'
+
+      expect(last_response.status).to eq 412
+      expect(last_response.body).to eq '{ Por favor escolha o arquivo a ser enviado. }'.to_json
     end
   end
 end
