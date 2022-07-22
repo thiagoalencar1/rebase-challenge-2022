@@ -1,6 +1,5 @@
 require 'spec_helper'
-require 'csv'
-require './lib/db_connect'
+require './lib/db_manager'
 
 describe 'DataImport' do
   after(:context) { DATABASE.exec("DROP TABLE exams_results_tests") }

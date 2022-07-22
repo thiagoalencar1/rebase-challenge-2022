@@ -27,7 +27,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: bash -c 'bundle install && ruby lib/db_prepare.rb && ruby server.rb'
+    command: bash -c 'bundle install && rake db:prepare && rake db:seed && ruby server.rb'
     tty: true
     stdin_open: true
     ports:
