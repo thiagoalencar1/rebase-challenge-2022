@@ -16,7 +16,7 @@ Ruby API ti handling with clinical examinations.
 1. Make sure docker is properly installed on your machine
 2. Clone repository:
 ```
-git clone https://github.com/thiagogondim/rebase-challenge-2022-.git
+git clone https://github.com/thiagogondim/rebase-challenge-2022.git
 ```
 3. Enter into de app folder:
 ```
